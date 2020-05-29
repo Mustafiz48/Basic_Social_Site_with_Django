@@ -1,0 +1,31 @@
+{% extends 'first_app/navbar.html' %}
+{% load static %}
+{% load bootstrap %}
+
+{% block hell %}
+
+<div class="jumbotron">
+
+    {% if registred %}
+    		<h3 style="text-allign:center;color:green;">Successfully registred!!Thank you for registration!</h3></br></br>
+            {% csrf_token %}
+            <a href="{% url 'link:home' %}" style="color:#808b96"> <button type="button" class="btn btn-outline-secondary btn-lg" style="margin-left:40%;"><i style="font-size:30px;;" class='fas fa-angle-double-left'>Back to Home</i> </button></a>
+
+    {% else %}
+
+    <div >
+        <!-- <button type="button" class="btn btn-outline-secondary btn-lg" style="margin-left:40%;"><i style="font-size:30px;;" class='fas fa-angle-double-left'><a href="{% url 'link:home' %}" style="color:#808b96">Back to Home</a></i> </button> -->
+            </br></br><h3 style="margin-left:30%;margin-right:20%">Please Fill Up all the following informations:</h3>
+    		<form enctype="multipart/form-data" method="POST" class="form-group" style="margin-left:23%;margin-right:23%">
+                {% csrf_token %}
+				{{user_form|bootstrap}}
+    			{{signup_form|bootstrap}}
+
+    			<button type="submit" class="btn btn-primary btn-lg btn-block" style="background-color:#339966">Sign Up</button>
+            	<a href="{% url 'link:home' %}" style="color:#ffffff"><button type="button" class="btn btn-secondary btn-lg btn-block"> Cancel</button></a>
+    		</form>
+    </div>
+	{% endif %}
+
+</div>
+{% endblock %}

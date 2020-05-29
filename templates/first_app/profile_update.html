@@ -1,0 +1,136 @@
+
+{% load static %}
+
+{% load bootstrap %}
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta name='viewport' content='width=device-width, initial-scale=1'>
+        <title>Voilaaaa</title>
+
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js" integrity="sha384-B0UglyR+jN6CkvvICOB2joaf5I4l3gm9GU6Hc1og6Ls7i6U/mkkaduKaBhlAXv9k" crossorigin="anonymous"></script>
+
+        <!-- <link rel="stylesheet" type="text/css" href=" {% static "css/menu.css" %}"> -->
+
+        <link rel='stylesheet' href='https://use.fontawesome.com/releases/v5.5.0/css/all.css' integrity='sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU' crossorigin='anonymous'>
+
+
+
+    </head>
+
+    <body class="jumbotron" style="padding-top:5px;">
+        <nav class="navbar navbar-expand-lg navbar-light bg-light">
+          <a class="navbar-brand" href="#">Paper <i style='font-size:20px' class='far'>&#xf5b8;</i></a>
+          <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+
+          <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item active" style="margin-left:50%;">
+                <a class="nav-link" href="{% url 'link:home' %}"><i style='font-size:25px' class="fas">&#xf015;</i></a>
+              </li>
+              <li class="nav-item active" style="margin-left:50%;">
+                <a class="nav-link" href="{% url 'link:first_app' %}"><i style='font-size:25px' class="fas">&#xf0c0;</i></a>
+              </li>
+              <li class="nav-item active" style="margin-left:50%;">
+                <a class="nav-link" href="{% url 'link:feed' %}"><i style='font-size:24px' class='fas'>&#xf5da;</i></a>
+              </li>
+              <li class="nav-item active" style="margin-left:50%;">
+                  <a class="nav-link" href="{% url 'link:profile' %}"><i style='font-size:24px' class='fas'>&#xf4fb;</i></a>
+              </li>
+
+              <li class="nav-item active" style="margin-left:50%;">
+                  <a class="nav-link" href="#"><i style='font-size:24px' class='fas'>&#xf086;</i></a>
+              </li>
+
+
+            </ul>
+            <form class="form-inline my-2 my-lg-0">
+              <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+              <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+            </form>
+          </div>
+        </nav>
+
+
+        <div class="jumbotron" style="margin-top:5px;">
+
+
+            <form enctype="multipart/form-data" method="POST" class="form-group" style="">
+
+            <!-- <form style="margin-left:10%;margin-right:10%;"> -->
+            {% csrf_token %}
+
+            <div class="container">
+              <div class="row">
+                <div class="col-sm-4">
+                    <label for="inputEmail4"><em><b>Profile Picture</b> </em></label>
+
+                      <img src={{user.user_signup.propic.url}} alt="profile picture!" style="height:300px;width:300px;border-radius: 50%;" />
+
+                      {{signup_update.propic|bootstrap}}
+                  </div>
+
+
+                <div class="col-sm">
+                <div class="row">
+                    <label for="inputEmail4"> <em><b>User Name </b> </em></label>
+                    <input type="text" class="form-control" name=username placeholder={{user.username}} value="{{user.username}}" style="border-radius:50px;height:45px;"><br><br>
+
+                </div>
+                </br></br>
+
+                <div class="row">
+                <div class="form-group col-md-6">
+                  <label for="inputEmail4"><em><b>First Name </b> </em></label>
+                  <input type="text" class="form-control" name=first_name placeholder={{user.first_name}} value="{{user.first_name}}" style="border-radius:50px;height:45px;"><br><br>
+                </div>
+                <div class="form-group col-md-6">
+                  <label for="inputPassword4"><em><b>Last Name</b> </em></label>
+                  <input type="text" class="form-control" name=last_name placeholder={{user.last_name}} value="{{user.last_name}}" style="border-radius:50px;height:45px;"><br><br>
+                </div>
+                </div>
+
+
+                <div class="row">
+                    <div class="form-group col-md-6">
+                      <label for="inputEmail4"><em><b>Email </b> </em></label>
+                      <input type="text" class="form-control" name=email placeholder={{user.email}} value="{{user.email}}" style="border-radius:50px;height:45px;"><br><br>
+                    </div>
+                    <div class="form-group col-md-6">
+                      <label for="inputPassword4"><em><b>Mobile</b> </em></label>
+                      <input type="text" class="form-control" name=Mobile placeholder={{user.user_signup.Mobile}} style="border-radius:50px;height:45px;" ><br><br>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="form-group col-md-6">
+                      <label for="inputEmail4"><em><b>Gender </b> </em></label>
+                      <input type="text" class="form-control" name=Gender placeholder={{user.user_signup.Gender}} style="border-radius:50px;height:45px;"><br><br>
+                    </div>
+                    <div class="form-group col-md-6">
+                      <label for="inputPassword4"><em><b>Date of Birth</b> </em></label>
+                      <input type="text" class="form-control" name=Birth placeholder={{user.user_signup.Birth}} style="border-radius:50px;height:45px;"><br><br>
+                    </div>
+                </div>
+
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+
+                </br></br>
+                <div style="margin-left:20%;margin-right:10%">
+                  <button type="submit" class="btn btn-primary btn-lg btn-block" style="background-color:#339966;border-radius:50px;height:45px;">Update</button></br>
+                  <a href="{% url 'link:home' %}" style="color:#ffffff;"><button type="button" class="btn btn-secondary btn-lg btn-block" style="border-radius:50px;height:45px;"> Cancel</button></a>
+
+                </div>
+            </form>
+        </div>
+</body>

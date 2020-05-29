@@ -1,0 +1,29 @@
+{% extends 'first_app/navbar.html' %}
+{% load static %}
+{% load bootstrap %}
+
+
+{% block hell %}
+
+
+<div class="jumbotron">
+<!-- <a href="{% url 'link:home' %}" style="color:#808b96"> <button type="button" class="btn btn-outline-secondary btn-lg" style="margin-left:40%;"><i style="font-size:30px;;" class='fas fa-angle-double-left'>Back to Home</i> </button></a> -->
+
+<form method="POST" action="{% url 'link:signin' %}"  style="margin-left:23%;margin-right:23%">
+  <div class="form-group">
+		{%csrf_token%}
+    <label for="exampleInputEmail1">User Name</label>
+    <input class="form-control" name="username"  placeholder="Enter Username">
+
+  </div>
+  <div class="form-group">
+    <label for="exampleInputPassword1">Password</label>
+    <input type="password" class="form-control" name="password" placeholder="Password">
+  </div>
+
+	<button type="submit" class="btn btn-secondary btn-lg btn-block">Sign In</button>
+		</br></br><h5 style="margin-left:30%;"><em>Didn't Sign Up Yet? <a href="{% url 'link:signup' %}"> Sign Up here </a></em></h5>
+</form>
+</div>
+
+{% endblock %}

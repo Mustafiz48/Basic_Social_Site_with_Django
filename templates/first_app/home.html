@@ -1,0 +1,99 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+    <head>
+        <meta name='viewport' content='width=device-width, initial-scale=1'>
+        <title>Voilaaaa</title>
+
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js" integrity="sha384-B0UglyR+jN6CkvvICOB2joaf5I4l3gm9GU6Hc1og6Ls7i6U/mkkaduKaBhlAXv9k" crossorigin="anonymous"></script>
+
+        <link rel="stylesheet" type="text/css" href=" {% static "css/menu.css" %}">
+
+        <meta name='viewport' content='width=device-width, initial-scale=1'>
+        <link rel='stylesheet' href='https://use.fontawesome.com/releases/v5.5.0/css/all.css' integrity='sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU' crossorigin='anonymous'>
+
+
+
+    </head>
+    <body class="jumbotron">
+
+            <h1>Welcome to Paper <i style='font-size:40px' class='far'>&#xf5b8;</i> </h1>
+            <p>Connect,Love,Care and Share...</p>
+
+            <div class="container">
+
+              <div class="row">
+                {% if user.is_authenticated %}
+                  <div class="col">
+                      <div class="alert alert-dark" style="height:150px;padding-left:30%;">
+                          <a  href="{% url 'link:feed' %}"  >
+                              <button class="button type1">News Feed</button>
+                          </a>
+
+                      </div>
+                  </div>
+                  <div class="col">
+                      <div class="alert alert-dark" style="height:150px;padding-left:30%;">
+                          <a  href="{% url 'link:profile' %}"  >
+                              <button class="button type1">Profile</button>
+                          </a>
+
+                      </div>
+                  </div>
+
+
+
+
+
+                <div class="w-100"></div>
+                <div class="col">
+                    <div class="alert alert-dark" style="height:150px;padding-left:30%;">
+                        <a  href="{% url 'link:first_app' %}"  >
+                            <button class="button type1">People</button>
+                        </a>
+
+                    </div>
+                </div>
+
+
+                <div class="col">
+                    <div class="alert alert-dark" style="height:150px;padding-left:30%;">
+                        <a  href="{% url 'link:logout' %}"  >
+                            <button class="button type1">Logout</button>
+                        </a>
+
+                    </div>
+                </div>
+                {% else %}
+                <div class="col">
+                    <div class="alert alert-dark" style="height:150px;padding-left:30%;">
+                        <a  href="{% url 'link:signin2' %}"  >
+                            <button class="button type1">Login</button>
+                        </a>
+
+                    </div>
+                </div>
+
+                <div class="col">
+                    <div class="alert alert-dark" style="height:150px;padding-left:30%;">
+                        <a  href="{% url 'link:signup' %}"  >
+                            <button class="button type1">Sign Up</button>
+                        </a>
+
+                    </div>
+                </div>
+
+                {% endif %}
+
+
+              </div>
+          </div>
+<div>
+<p class="copyright">Copyright:</br>
+    <a href="https://www.facebook.com/mustafij48">Mustafijur Rahman</a></br>
+    Dept. of CSE, RUET
+</p>
+</body>
+</html>

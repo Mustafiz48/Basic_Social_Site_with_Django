@@ -1,0 +1,135 @@
+{% load static %}
+{% load bootstrap %}
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+    <head>
+        <meta charset="utf-8">
+        <title></title>
+
+        <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+        <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
+        <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+
+        <link rel="stylesheet" type="text/css" href=" {% static "css/friends.css" %}">
+        <link rel='stylesheet' href='https://use.fontawesome.com/releases/v5.5.0/css/all.css' integrity='sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU' crossorigin='anonymous'>
+
+
+
+</head>
+
+<body  >
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+      <a class="navbar-brand" href="#">Paper <i style='font-size:20px' class='far'>&#xf5b8;</i></a>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav mr-auto">
+            <li class="nav-item active" style="margin-left:50%;">
+            <a class="nav-link" href="{% url 'link:home' %}"><i style='font-size:25px' class="fas">&#xf015;</i></a>
+          </li>
+          <li class="nav-item active" style="margin-left:50%;">
+            <a class="nav-link" href="{% url 'link:first_app' %}"><i style='font-size:25px' class="fas">&#xf0c0;</i></a>
+          </li>
+          <li class="nav-item active" style="margin-left:50%;">
+            <a class="nav-link" href="{% url 'link:feed' %}"><i style='font-size:24px' class='fas'>&#xf5da;</i></a>
+          </li>
+          <li class="nav-item active" style="margin-left:50%;">
+              <a class="nav-link" href="{% url 'link:profile' %}"><i style='font-size:24px' class='fas'>&#xf4fb;</i></a>
+          </li>
+
+          <li class="nav-item active" style="margin-left:50%;">
+              <a class="nav-link" href="#"><i style='font-size:24px' class='fas'>&#xf086;</i></a>
+          </li>
+
+
+        </ul>
+        <form class="form-inline my-2 my-lg-0">
+          <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+          <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+        </form>
+      </div>
+    </nav>
+
+
+<div class="jumbotron">
+    <h4><em> People You may Know:</em></h4></br>
+<div class="container" >
+    <div class="row" style="box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);">
+
+        <div class="col-md-8">
+            <div class="people-nearby">
+            {% for user in users %}
+              {% if not user in friends %}
+              <div class="nearby-user" >
+                <div class="row">
+                  <div class="col-md-2 col-sm-2">
+                    <img src={{user.user_signup.propic.url}}  alt="user" class="profile-photo-lg">
+                  </div>
+                  <div class="col-md-7 col-sm-7">
+                      <h5><a href="{% url 'link:profee' proo='add' pk=user.pk %}">{{user.username}}</a></h5>
+                    <p>Software Engineer</p>
+                    <p class="text-muted">500m away</p>
+                  </div>
+
+                 <a href="{% url 'first_app:change_friends' operation='add' pk=user.pk %}">
+                  <div class="col-md-3 col-sm-3">
+                    <button class="btn btn-primary pull-right">Follow</button>
+                </a>
+
+                  </div>
+                </div>
+
+                {% endif %}
+                {% endfor %}
+              </div>
+            </div>
+    	</div>
+	</div>
+</div>
+</div>
+
+
+</br>
+<h4><em>Following</em></h4>
+<div>
+<div class="container">
+    <div class="row" style="box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);">
+        <div class="col-md-8">
+            <div class="people-nearby">
+                {% for friend in friends %}
+
+              <div class="nearby-user" >
+                <div class="row" >
+                  <div class="col-md-2 col-sm-2">
+                    <img src={{friend.user_signup.propic.url}}  alt="user" class="profile-photo-lg">
+                  </div>
+                  <div class="col-md-7 col-sm-7">
+                    <h5><a href="{% url 'link:profee' proo='add' pk=friend.pk %}">{{friend.username}}</a></h5>
+                    <p>Software Engineer</p>
+                    <p class="text-muted">500m away</p>
+                  </div>
+
+                  <a href="{% url 'first_app:change_friends' operation='remove' pk=friend.pk %}">
+                  <div class="col-md-3 col-sm-3">
+                    <button class="btn btn-primary pull-right">Unfollow</button>
+                </a>
+
+                  </div>
+                </div>
+                <div style="   width: 153%;height: 47px;border-bottom: 5px solid  #2ecc71 ;radius:20%;">
+                </div>
+
+
+
+                {% endfor %}
+              </div>
+            </div>
+    	</div>
+	</div>
+</div>
+
+
+
+</body>

@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+    <head>
+        <meta charset="utf-8">
+        <title></title>
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js" integrity="sha384-B0UglyR+jN6CkvvICOB2joaf5I4l3gm9GU6Hc1og6Ls7i6U/mkkaduKaBhlAXv9k" crossorigin="anonymous"></script>
+
+
+        <meta name='viewport' content='width=device-width, initial-scale=1'>
+        <link rel='stylesheet' href='https://use.fontawesome.com/releases/v5.5.0/css/all.css' integrity='sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU' crossorigin='anonymous'>
+
+    </head>
+    <body class="jumbotron" style="padding-top:5px;">
+        <nav class="navbar navbar-expand-lg navbar-light bg-light">
+          <a class="navbar-brand" href="#">Paper <i style='font-size:20px' class='far'>&#xf5b8;</i></a>
+          <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+
+          <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item active" style="margin-left:50%;">
+                <a class="nav-link" href="{% url 'link:home' %}"><i style='font-size:25px' class="fas">&#xf015;</i></a>
+              </li>
+              <li class="nav-item active" style="margin-left:50%;">
+                <a class="nav-link" href="{% url 'link:first_app' %}"><i style='font-size:25px' class="fas">&#xf0c0;</i></a>
+              </li>
+              <li class="nav-item active" style="margin-left:50%;">
+                <a class="nav-link" href="{% url 'link:feed' %}"><i style='font-size:24px' class='fas'>&#xf5da;</i></a>
+              </li>
+              <li class="nav-item active" style="margin-left:50%;">
+                  <a class="nav-link" href="{% url 'link:profile' %}"><i style='font-size:24px' class='fas'>&#xf4fb;</i></a>
+              </li>
+
+              <li class="nav-item active" style="margin-left:50%;">
+                  <a class="nav-link" href="#"><i style='font-size:24px' class='fas'>&#xf086;</i></a>
+              </li>
+
+
+            </ul>
+            <form class="form-inline my-2 my-lg-0">
+              <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+              <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+            </form>
+          </div>
+        </nav>
+
+    </br></br>
+<style>
+.user_name{
+    font-size:14px;
+    font-weight: bold;
+}
+.comments-list .media{
+    border-bottom: 1px dotted #ccc;
+}
+</style>
+
+
+
+
+
+
+<div class="card border-success mb-3" style="margin-left:20%;margin-right:10%">
+
+  <h5 class="card-header">
+    <!-- <img class="rounded-circle" width="45" src={{post.user.user_signup.propic.url}} alt=""> -->
+    {{post.user.first_name}} {{post.user.last_name}}</h5>
+        <div class="card-body">
+            <p class="card-text">{{ post.post }}</p></br>
+            <form method="POST" class="post-form" style="#"> {% csrf_token %}
+                <input type="text" class="form-control" name=text placeholder="Write Your Comment Here" style="height:80px;width:50%" >
+                <input type="hidden"  class="form-control" name=author value="{{user.username}}">
+
+                <button type="submit" class="btn btn-success" style="width:25%">post</button>
+            </form>
+        </div>
+</div>
+
+
+
+
+
+<div class="row" style="margin-left:19%;margin-right:9%">
+
+    <div class="col-sm">
+    <div class="card border-info mb-3" >
+      <div class="card-header">
+        <h3>Comments</h3>
+      </div>
+
+          <div class="container">
+                      <div class="row">
+                          {% for comment in post.comments.all %}
+
+                          <div class="col-md-5">
+                            <div class="page-header">
+                              <!-- <h3> Comments </h3> -->
+                            </div>
+                        </br>
+
+                             <div class="comments-list">
+                                 <div class="media">
+                                      <!-- <a class="media-left" href="#">
+                                        <img src="http://lorempixel.com/40/40/people/1/">
+                                      </a> -->
+                                      <div class="media-body">
+
+                                        <h4 class="media-heading user_name">{{comment.author}}</h4>
+                                        {{comment.text}}
+
+                                        <p><small><a href="">Like</a> - <a href="">Share</a></small></p>
+                                      </div>
+                                    </div>
+
+</div>
+</div>
+</div>
+
+
+
+
+
+
+
+
+            {% empty %}
+            <p>No comments here yet :(</p>
+      </div>
+
+
+    </div>
+<div>
+
+{% endfor %}
+</div>
+
+
+</body>
+</html>

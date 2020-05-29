@@ -1,0 +1,91 @@
+
+{% load static %}
+{% load bootstrap %}
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+    <head>
+        <meta name='viewport' content='width=device-width, initial-scale=1'>
+        <title>Voilaaaa</title>
+
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js" integrity="sha384-B0UglyR+jN6CkvvICOB2joaf5I4l3gm9GU6Hc1og6Ls7i6U/mkkaduKaBhlAXv9k" crossorigin="anonymous"></script>
+
+        <link rel="stylesheet" type="text/css" href=" {% static "css/login2.css" %}">
+
+        <meta name='viewport' content='width=device-width, initial-scale=1'>
+        <link rel='stylesheet' href='https://use.fontawesome.com/releases/v5.5.0/css/all.css' integrity='sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU' crossorigin='anonymous'>
+        <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+
+        {% if user.is_authenticated %}
+        <meta http-equiv="refresh" content="0; {% url 'link:home' %}" />
+        {% endif %}
+    </head>
+
+
+<body>
+
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav mr-auto">
+            <li class="nav-item active" style="margin-left:50%;">
+            <a class="nav-link" href="{% url 'link:home' %}"><i style='font-size:25px' class="fas">&#xf015;</i></a>
+          </li>
+          <li class="nav-item active" style="margin-left:50%;">
+            <a class="nav-link" href="{% url 'link:first_app' %}"><i style='font-size:25px' class="fas">&#xf0c0;</i></a>
+          </li>
+          <li class="nav-item active" style="margin-left:50%;">
+            <a class="nav-link" href="{% url 'link:feed' %}"><i style='font-size:24px' class='fas'>&#xf5da;</i></a>
+          </li>
+          <li class="nav-item active" style="margin-left:50%;">
+              <a class="nav-link" href="{% url 'link:profile' %}"><i style='font-size:24px' class='fas'>&#xf4fb;</i></a>
+          </li>
+
+          <li class="nav-item active" style="margin-left:50%;">
+              <a class="nav-link" href="#"><i style='font-size:24px' class='fas'>&#xf086;</i></a>
+          </li>
+
+          <li class="nav-item active" style="margin-left:50%;">
+              <a class="nav-link" href="{% url 'link:logout' %}"><i style='font-size:24px' class='fas'>&#xf011;</i></a>
+          </li>
+
+        </ul>
+
+      </div>
+    </nav>
+
+
+
+
+<div class="container-fluid">
+  <div class="row no-gutter">
+    <div class="d-none d-md-flex col-md-4 col-lg-6 bg-image"></div>
+    <div class="col-md-8 col-lg-6">
+      <div class="login d-flex align-items-center py-5">
+        <div class="container">
+          <div class="row">
+            <div class="col-md-9 col-lg-8 mx-auto">
+              <h3 class="login-heading mb-4">Welcome back!</h3>
+
+              <form enctype="multipart/form-data" method="POST" class="form-group" style="margin-left:23%;margin-right:23%">
+                  {% csrf_token %}
+  				{{user_form|bootstrap}}
+      			{{signup_form|bootstrap}}
+
+      			<button type="submit" class="btn btn-primary btn-lg btn-block" style="background-color:#339966">Sign Up</button>
+              	<a href="{% url 'link:home' %}" style="color:#ffffff"><button type="button" class="btn btn-secondary btn-lg btn-block"> Cancel</button></a>
+      		</form>
+
+          </br></br><div class="small"><em>Didn't Sign Up Yet? <a href="{% url 'link:signup' %}"> Sign Up here </a></em></div>
+
+
+
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+</body>
